@@ -35,12 +35,12 @@ static SESSION: LazyLock<String> = LazyLock::new(|| {
 });
 
 pub async fn fetch_newest_user(client: &reqwest::Client) -> Option<String> {
-    let mut low = 1u64;
-    let mut high = 1u64;
+    let mut low = 8096u64;
+    let mut high = 8096u64;
     let session: &str = &SESSION;
     loop {
         let ok = client
-            .get(format!("https://vortex.towerstats.com/api/users/{high}"))
+            .get(format!("https://playvortex.io/api/users/{high}"))
             .header(COOKIE, session)
             .send()
             .await
@@ -55,7 +55,7 @@ pub async fn fetch_newest_user(client: &reqwest::Client) -> Option<String> {
         let mid = (low + high) / 2;
 
         let ok = client
-            .get(format!("https://vortex.towerstats.com/api/users/{mid}"))
+            .get(format!("https://playvortex.io/api/users/{mid}"))
             .header(COOKIE, session)
             .send()
             .await
@@ -74,7 +74,7 @@ pub async fn fetch_id_by_name(
     let session: &str = &SESSION;
     let users = client
         .get(format!(
-            "https://vortex.towerstats.com/api/users/search?q={name}"
+            "https://playvortex.io/api/users/search?q={name}"
         ))
         .header(COOKIE, session)
         .send()
@@ -95,7 +95,7 @@ pub async fn fetch_id_by_name(
 pub async fn fetch_user_name(client: &reqwest::Client, id: &str) -> Option<String> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -114,7 +114,7 @@ pub async fn fetch_user_name(client: &reqwest::Client, id: &str) -> Option<Strin
 pub async fn fetch_user_bio(client: &reqwest::Client, id: &str) -> Option<String> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -133,7 +133,7 @@ pub async fn fetch_user_bio(client: &reqwest::Client, id: &str) -> Option<String
 pub async fn fetch_user_status(client: &reqwest::Client, id: &str) -> Option<String> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -152,7 +152,7 @@ pub async fn fetch_user_status(client: &reqwest::Client, id: &str) -> Option<Str
 pub async fn fetch_user_friends(client: &reqwest::Client, id: &str) -> Option<u8> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -171,7 +171,7 @@ pub async fn fetch_user_friends(client: &reqwest::Client, id: &str) -> Option<u8
 pub async fn fetch_user_followers(client: &reqwest::Client, id: &str) -> Option<u8> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -190,7 +190,7 @@ pub async fn fetch_user_followers(client: &reqwest::Client, id: &str) -> Option<
 pub async fn fetch_user_following(client: &reqwest::Client, id: &str) -> Option<u8> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -209,7 +209,7 @@ pub async fn fetch_user_following(client: &reqwest::Client, id: &str) -> Option<
 pub async fn fetch_user_visits(client: &reqwest::Client, id: &str) -> Option<u8> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
@@ -228,7 +228,7 @@ pub async fn fetch_user_visits(client: &reqwest::Client, id: &str) -> Option<u8>
 pub async fn fetch_user_creation(client: &reqwest::Client, id: &str) -> Option<String> {
     let session: &str = &SESSION;
     client
-        .get(format!("https://vortex.towerstats.com/api/users/{id}"))
+        .get(format!("https://playvortex.io/api/users/{id}"))
         .header(
             COOKIE,
             session,
